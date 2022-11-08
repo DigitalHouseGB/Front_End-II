@@ -1,32 +1,35 @@
-import{somar,subtrair,multiplicar,divisao} from "./script_1.js";
+import{calculadora} from "./script.js";
 
-alert("Bem vindo a calculadora amadora\nOs comandos para usa-la são, 'dividir', 'somar', 'multiplicar' ou 'subtrair' ")
+let nome = prompt("Informe seu nome")
 
+alert(`Olá ${nome}\nBem vindo a calculadora amadora\nOs comandos para usa-la são, 'dividir', 'somar', 'multiplicar' ou 'subtrair'\n`)
+
+alert("Digite o primeiro número e logo após, digite o segundo número para executar a operação")
+
+let resultado = 0
+
+/* Implementação de callback */
+function pergunta(calculadora){
 let perguntaOperacao = prompt("Qual operação matemática deseja fazer ?")
+resultado = calculadora[perguntaOperacao]()
+return resultado
+}
+pergunta(calculadora)
 
-let resultadoOperacao = 0 
+alert (`O resultado é ${resultado}`)
 
-function usuario(operacao){
-        
-    if(operacao == "somar"){
-        alert("Digite o primeiro número e logo após, digite o segundo número para executar a operação")
-        resultadoOperacao = somar()
-    }else if(operacao == "dividir"){
-        alert("Digite o primeiro número e logo após, digite o segundo número para executar a operação")
-        resultadoOperacao = divisao()
-    }else if(operacao == "multiplicar"){
-        alert("Digite o primeiro número e logo após, digite o segundo número para executar a operação")
-        resultadoOperacao = multiplicar()
-    }else if(operacao == "subtrair"){
-        alert("Digite o primeiro número e logo após, digite o segundo número para executar a operação")
-        resultadoOperacao = subtrair()
+function maisCalc(){
+    let confirmacao = confirm("Deseja executar mais algum calculo ?")
+    if(confirmacao === true){
+        pergunta(calculadora)
+        alert (`O resultado é ${resultado}`)
     }
-    return resultadoOperacao
+    if(confirmacao === true){
+        maisCalc()
+    }else{
+        alert("Obrigado por nos visitar")
+    }
+    
 }
 
-usuario((perguntaOperacao))
-
-alert("O resultado da conta é" +" "+ resultadoOperacao)
-
-
-
+maisCalc()
